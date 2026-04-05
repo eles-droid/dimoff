@@ -31,23 +31,8 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
   }
 
-  /* ── CURSOR ── */
-  #cursor {
-    position: fixed; width: 18px; height: 18px;
-    border: 1.5px solid var(--violet);
-    border-radius: 50%; pointer-events: none; z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: transform .12s ease, width .2s, height .2s, background .2s, border-color .2s;
-    mix-blend-mode: screen;
-  }
-  #cursor.big {
-    width: 44px; height: 44px;
-    background: var(--violet-glow);
-    border-color: var(--pink);
-  }
 
   /* ── GRAIN OVERLAY ── */
   body::after {
@@ -141,7 +126,6 @@
     color: #fff;
     background: rgba(155,89,255,.12);
     backdrop-filter: blur(8px);
-    cursor: none;
     position: relative; overflow: hidden;
     animation: fadeUp .8s 1.2s ease-out both, pulse 3s 2s ease-in-out infinite;
     transition: background .3s, box-shadow .3s, transform .2s;
@@ -374,7 +358,6 @@
 </head>
 <body>
 
-<div id="cursor"></div>
 <div id="scroll-bar"></div>
 
 <!-- NAV -->
@@ -558,17 +541,6 @@
 
 
 <script>
-/* ── CURSOR ── */
-const cur = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-  cur.style.left = e.clientX + 'px';
-  cur.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .glass-card').forEach(el => {
-  el.addEventListener('mouseenter', () => cur.classList.add('big'));
-  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-});
-
 /* ── SCROLL BAR ── */
 window.addEventListener('scroll', () => {
   const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
